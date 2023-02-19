@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+<script>
+function mySubmit() {
+  var t = document.getElementById("address");
+  if (t) {
+    t.value = trimx(t.value);
+    if (validateEmail(t.value)) {
+      document.fl1.submit();
+    }
+  }
+}
+
+function myClear() {
+  var f=document.fl1;
+  f.address.value='';
+  document.fl1.submit();				
+}
+
+function trimx(string)  {
+  return string.replace(/(^\s+)|(\s+$)/g, "");
+}
+
+function validateEmail(input) {
+  var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  if (input.match(validRegex)) {
+    return true;
+  } 
+  else {
+    alert("Invalid email address!");
+    document.fl1.address.focus();
+    return false;
+  }
+}
+</script>
+
+</head>
+<body>
+<form action="./index.cgi" name="fl1" id="fl1" method="get" onsubmit="return false">
+<p>Look for address: <input type="text" name="address" id="address" size="25" value="[ADDRESS]"> <button onclick="mySubmit();">Find</button> <button onclick="myClear();">Reset</button></p>
+[NRECORDS]
+[TBL]
+
+</form>
+</body>
+</html>
